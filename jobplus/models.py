@@ -4,6 +4,7 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
@@ -19,7 +20,7 @@ class Base(db.Model):
                         default=datetime.utcnow,
                         onupdate=datetime.utcnow)
 
-class User(Base):
+class User(Base,UserMixin):
     __tablename__ = 'user'
 
     ROLE_JOBSEEKER = 10
